@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register Page</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="styles.css">
+
+
+        <!--Bootstrap 5-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div>
+            <img src="colorful.hr.logo.png">
+            <h2>REGISTER</h2>
+        </div>
+        <div class="content">
+            <div class="registerForm">
+                <div>
+                    <h3>Welcome to colorful.hr</h3>
+                </div>
+                <div> 
+                    <form method="GET" action="#" name="reg_form" id="form">
+                        <div class="mb-3">
+                            <input type="email"  name="email" id="email" placeholder="E-mail" class="form-control" required onkeyup="validateEmail()" style="border-style: inset;">
+                            <span id="validEmail" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text"  name="username" placeholder="Username" class="form-control" required id="user" onkeyup="return checkUser()" style="border-style: inset;">
+                            <span id="StrengthUser" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" name="pw" placeholder="Password" class="form-control" required id="pass" onkeyup="return checkPassword()" style="border-style: inset">
+                            <span id="StrengthDisp" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="firstname" placeholder="First Name" class="form-control" required id="firstName" onkeyup="return checkFirstName()" style="border-style: inset;">
+                            <span id="StrengthFirstName" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="lastname" placeholder="Last Name" class="form-control" required id="lastName" onkeyup="return checkLastName()" style="border-style: inset;">
+                            <span id="StrengthLastName" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" name="age" placeholder="Age" class="form-control " required id="age" onkeyup="return checkAge()" onblur="isEmpty()" style="border-style: inset;">
+                            <span id="validAge" class="badge displayBadge"></span>
+                        </div>
+
+                        <div class="div_submit">
+                            <button type="submit" class="btn btn-success" id="submit"  disabled onclick="return store()"><a href="">Register</a></button>
+                        
+                            <span id="messagge" class="badge rounded-pill bg-danger" style="margin: 2%; padding: 3%;"></span>
+                        </div>
+
+                        <div class="div_submit">
+                            <button type="button" class="btn btn-primary"><a href="login.html">Login</a></button> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Javascript-->
+        <script type="text/javascript" src="project.js"></script>
+    </body>
+</html>

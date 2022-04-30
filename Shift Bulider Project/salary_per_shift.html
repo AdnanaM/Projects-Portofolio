@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Salary</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="styles.css">
+
+
+        <!--Bootstrap 5-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <style>
+            body{
+                background: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar" style="padding: 0;">
+            <nav class="navMenu">
+                <div class="logo_navbar">
+                    <img src="colorful.hr.logo.png" style="width: 70%;">
+                </div>
+
+                <div class="hello_navbar">
+                    <p id="hello"></p>
+                    <p onclick="logout()">Logout</p>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container p-5">
+            <table class="table table-striped table-bordered table-hover" id="tabel">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Beggining Time</th>
+                        <th scope="col">End Time</th>
+                        <th scope="col">Price per hour</th>
+                        <th scope="col">Shift Place</th>
+                        <th scope="col">Shift Slug</th>
+                        <th scope="col">Total Profit per shift</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+
+        <div class="container p-3 text-center">
+            <button type="button" class="btn btn-info" onclick="chart()">Graphic salary here</button>
+        </div>
+        <div class="graphic">
+            <canvas id="myChart" style="width:1 0%; max-width:500px"></canvas>
+        </div>
+
+        <script type="text/javascript">
+            //Salary per shift page - creates the table and display all the shifts.
+            function salary_per_shift(){
+            let user_token = JSON.parse(localStorage.getItem('authToken'));
+            let local_shifts = JSON.parse(localStorage.getItem(`${user_token.username}-shifts`));
+            for(let i = 0; i < local_shifts.length; i++){
+                let t_body = document.getElementById('tbody');
+                let tr = document.createElement('tr');
+                t_body.appendChild(tr);
+
+                let td_date = document.createElement('td');
+                td_date.innerText = local_shifts[i].date;
+                tr.appendChild(td_date)
+
+                let td_begginning_time = document.createElement('td');
+                td_begginning_time.innerText = local_shifts[i].beggining_time;
+                tr.appendChild(td_begginning_time);
+
+                let td_end_time = document.createElement('td');
+                td_end_time.innerText = local_shifts[i].end_time;
+                tr.appendChild(td_end_time);
+
+                let td_price_hour = document.createElement('td');
+                td_price_hour.innerText = local_shifts[i].price_per_hour;
+                tr.appendChild(td_price_hour);
+
+                let td_shift_place = document.createElement('td');
+                td_shift_place.innerText = local_shifts[i].shift_place;
+                tr.appendChild(td_shift_place);
+
+                let td_shift_slug = document.createElement('td');
+                td_shift_slug.innerText = local_shifts[i].shift_slug;
+                tr.appendChild(td_shift_slug);
+
+                let td_total_profit = document.createElement('td');
+                td_total_profit.innerText = local_shifts[i].total_profit;
+                tr.appendChild(td_total_profit);
+            }
+        }
+            salary_per_shift()
+        </script>
+        <script src="project.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    </body>
+</html>

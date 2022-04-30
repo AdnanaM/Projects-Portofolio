@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home Page</title>
+
+        <!--CSS-->
+        <link rel="stylesheet" href="styles.css">
+
+
+        <!--Bootstrap 5-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+        <style>
+            body{
+                background: none;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="navbar" style="padding: 0;">
+            <nav class="navMenu">
+                <div class="logo_navbar">
+                    <img src="colorful.hr.logo.png" style="width: 70%;">
+                </div>
+
+                <div class="content_navbar">
+                    <p onclick="display_add_shift()">Add Shift</p>
+                    <p onclick="display_edit_profile()">Edit Profile</p>
+                    <a href="salary_per_shift.html">See your salaries here</a>
+                </div>
+
+                <div class="hello_navbar">
+                    <p id="hello"></p>
+                    <p onclick="logout()">Logout</p>
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="content_add_shift">
+            <div class="add_shift_form">
+                <div class="mb-3">
+                    <h2>ADD SHIFT</h2>
+                </div>
+                <div class="mb-3">
+                    <input type="date" name="date" class="input_shift" id="date">
+                </div>
+                <div class="mb-3">
+                    <input type="time" name="time" class="input_shift" id="start_time">
+                </div>
+                <div class="mb-3">
+                    <input type="time" name="time" class="input_shift" id="end_time">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="hourly_wage" placeholder="Hourly Wage" class="input_shift" id="price">
+                </div>
+                <div class="mb-3">
+                    <select name="numar"  class="input_shift" id="workplace">
+                        <option value="Workplace">Workplace</option>
+                        <option value="Remote">Remote</option>
+                        <option value="In Site">In site</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="shift_slug" placeholder="Shift_slug" class="input_shift" id="shift_slug" onblur="shift_slug_unique()">
+                    <span id="error" class="badge rounded-pill bg-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <textarea name="details" class="input_shift"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" onclick="adding_shift()" style="width: 100%;" id="save">Save
+                        <div id="spinner" style="display: none;">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </button>
+                    <span id="messagge" class="badge rounded-pill bg-danger" style="margin: 2%;"></span>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-danger" onclick="hide_add_shift()" style="width: 100%;">Close</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content_edit_shift">
+            <div class="edit_shift_form">
+                <div class="mb-3">
+                    <h2>EDIT SHIFT</h2>
+                </div>
+                <div class="mb-3">
+                    <input type="date" name="date" class="input_shift" id="date_edit">
+                </div>
+                <div class="mb-3">
+                    <input type="time" name="time" class="input_shift" id="start_time_edit">
+                </div>
+                <div class="mb-3">
+                    <input type="time" name="time" class="input_shift" id="end_time_edit">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="hourly_wage" placeholder="Hourly Wage" class="input_shift" id="price_edit">
+                </div>
+                <div class="mb-3">
+                    <select name="numar"  class="input_shift" id="workplace_edit">
+                        <option value="Workplace">Workplace</option>
+                        <option value="Remote">Remote</option>
+                        <option value="In Site">In site</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="shift_slug" placeholder="Shift_slug" class="input_shift" id="shift_slug_edit">
+                    <span id="error" class="badge rounded-pill bg-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <textarea name="details" class="input_shift"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-success" style="width: 100%;" id="save_edit">Save
+                        <div id="spinner" style="display: none;">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-danger" style="width: 100%;" onclick="close_edit_shift()">Close</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="content_edit_profile">
+            <div class="edit_profile">
+                <div>
+                    <h3>Edit Profile</h3>
+                </div>
+                <form method="GET" action="#">
+                    <div class="mb-3">
+                        <input type="email"  name="email" placeholder="E-mail" class="form-control" style="border-style: inset;" id="edit_email">
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="password" name="pw" placeholder="Password" class="form-control" style="border-style: inset" id="edit_password">
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="text" name="firstname" placeholder="First Name" class="form-control" style="border-style: inset;" id="edit_FName">
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="text" name="lastname" placeholder="Last Name" class="form-control" style="border-style: inset;" id="edit_LName">
+                    </div>
+    
+                    <div class="mb-3">
+                        <input type="text" name="age" placeholder="Age" class="form-control " style="border-style: inset;" id="edit_age">
+                    </div>
+    
+                    <div class="div_submit">
+                        <button type="submit" class="btn btn-success" id="submit" onclick="edit_profile()"><a href="">Save</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="search_div">
+            <div class="search_form">
+                <div class="search_shift">
+                    <div class="mb-3">
+                        <p>From Date</p>
+                    </div>
+                    <div class="mb-3">
+                        <input type="date" name="from_date" class="form-control" id="dateF">
+                    </div>
+                </div>
+                <div class="search_shift"> 
+                    <div class="mb-3">
+                        <p>To Date</p>
+                    </div>
+                    <div class="mb-3">
+                        <input type="date" name="to_date" class="form-control" id="dateT">
+                    </div>
+                </div>
+                <div class="search_shift">
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-success" onclick = "search_between_2_dates()">Search by date</button>
+                    </div>
+                </div>
+            </div>
+            <div class="search_by_name">
+                <div class="search_input">
+                    <input type="text" name="text" class="form-control" placeholder="Search for names..." id="input_search_name">
+                </div>
+                <div class="search_input">
+                    <button type="submit" class="btn btn-success" onclick="search_by_name()">Search by name</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <table class="table table-striped table-bordered table-hover " id="tabel">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Beggining Time</th>
+                        <th scope="col">End Time</th>
+                        <th scope="col">Price per hour</th>
+                        <th scope="col">Shift Place</th>
+                        <th scope="col">Shift Slug</th>
+                        <th scope="col">Total Profit per shift</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+
+        <footer class="text-center text-white fixed-bottom" style="background-color: #21081a;">
+            <div class="text-center p-1" style="background-color: #395fc5;">
+              <p class="text-white">© 2021 Copyright. Created by Adnana Muresan</p>
+            </div>
+        </footer>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="project.js"></script>
+    </body>
+</html>
